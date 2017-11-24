@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Ürün Satış Portalı</title>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    
+
+  <div class="container" style="margin-top:30px;">
+      <div class="col-md-12">
+          <div id='cssmenu'>
+              <ul>
+                 <li><a href='#' id="urun" >Ürünler</a></li>
+                 <li><a href='#' id="sat">Ürün Satış</a></li>
+                 <li><a href='#' id="ekle">Ürün Ekle</a></li>
+                 <li><a href='#' id="sil">Ürün Sil</a></li>
+              </ul>
+              </div>
+
+      </div>
+    <div class="row">
+        
+       
+      
+      <div class="col-md-12">
+        <h1>Kayıtlar</h1>
+        <table class="table table-hover" id="tbKayitlar">
+          <tr class="bg-info">
+
+            <td>Ürün Kodu</td>
+            <td>Ürün Adı</td>
+            <td>Ürün Kategori</td>
+            <td>Ürün Adet</td>
+            <td>Ücret</td>
+            <td></td>
+
+          </tr>
+          <tr>
+
+            <td>1</td>
+            <td>Ülker Damak</td>
+            <td>Çikolata</td>
+            <td>1</td>
+            <td>5 tl</td>
+            <td><button class="btn btn-danger sil btnSil">Sil</button><button class="btn btn-success sil btnSat">Sat</button></td>
+          </tr>
+          <tr>
+            
+                        <td>2</td>
+                        <td>Ülker Gofret</td>
+                        <td>Çikolata</td>
+                        <td>2</td>
+                        <td>3 tl</td>
+                        <td><button class="btn btn-danger sil btnSil" >Sil</button><button class="btn btn-success sil btnSat">Sat</button></td>
+                      </tr>
+        </table>
+      </div>
+      <div class="col-md-12">
+          <div id="form">
+              <h1>Ürün Ekle</h1>
+              <br>
+              <div class="col-md-4">
+              <label>Ürün Kodu</label>
+              <input type="text" id="txtUrunkodu" class="form-control txt">
+              <br>
+            
+              <label>Ürün Adı</label>
+              <input type="text" id="txtUrunAdi" class="form-control txt">
+              <br>
+            </div>
+            <div class="col-md-4">
+              <label>Ürün Kategori</label>
+              <input type="text" id="txtUrunKate" class="form-control txt ">
+              <br>
+              <label>Adet</label>
+              <input type="text" id="txtUrunadet" class="form-control txt ">
+              <br>
+            </div>
+            <div class="col-md-4">
+              <label>Ücret</label>
+              <input type="text" id="txtUcret" class="form-control txt">
+              <br>
+              <button id="btnSatis" class="btn btn-primary">Ürün Ekle</button>
+              <button id="btnTest" class="btn btn-success">test</button>
+            </div>
+              <hr>
+              
+              <div id="sonuc"></div>
+            </div>
+      </div>
+      
+    </div>
+  </div>
+  <script src="js/jquery-3.2.1.js"></script>
+  <script src="js/script.js"></script>
+  <script>
+    $(function () {
+
+      $("#form").css({
+          "display":"none"
+        })
+
+        $(".btnSil").css({
+          "display":"none"
+        })
+        $(".btnSat").css({
+          "display":"none"
+        })
+
+
+
+      $("#btnSatis").click(function () {
+
+        var urunkodu = $("#txtUrunkodu").val();
+        var urunadi = $("#txtUrunAdi").val();
+        var urunkate = $("#txtUrunKate").val();
+        var urunadet = $("#txtUrunadet").val();
+        var urunucret = $("#txtUcret").val();
+
+        if (urunkodu == "" || urunadi == "" || urunkate == "" || urunadet == "" || urunucret == "") {
+          $("#sonuc").fadeIn(1000);
+          $("#sonuc").html("Lütfen Tüm Alanları Doldurunuz!");
+          $("#sonuc").removeClass();
+          $("#sonuc").addClass("alert alert-danger");
+          $("#sonuc").fadeOut(3000);
+          return false;
+        }
+
+        $("#tbKayitlar").append("<tr><td>" + urunkodu + "</td><td>" + urunadi + "</td><td>" + urunkate + "</td><td>"+urunadet + "</td><td>"+urunucret+"</td><td> <button class='btn btn-danger sil btnSil'>Sil</button><button class='btn btn-success sil btnSat'>Sat</button></td></tr>");
+
+        $(".btnSil").css({
+          "display":"none"
+        })
+        $(".btnSat").css({
+          "display":"none"
+        })
+        
+      });
+
+
+      $(document).on("click", ".sil", function () {
+        var satir = $(this).closest("tr");
+        satir.remove();
+
+      });
+
+      $("#btnTest").click(function(){
+
+        $(".btnSil").css({
+          "display":"none"
+        })
+
+
+      })
+
+      $("#urun").click(function(){
+        $("#form").css({
+          "display":"none"
+        })
+        $(".btnSil").css({
+          "display":"none"
+        })
+        $(".btnSat").css({
+          "display":"none"
+        })
+      })
+
+      $("#sat").click(function(){
+        $("#form").css({
+          "display":"none"
+        })
+        $(".btnSil").css({
+          "display":"none"
+        })
+        $(".btnSat").css({
+          "display":"inherit"
+        })
+      })
+
+      $("#ekle").click(function(){
+        $("#form").css({
+          "display":"inherit"
+        })
+        $(".btnSil").css({
+          "display":"none"
+        })
+        $(".btnSat").css({
+          "display":"none"
+        })
+      })
+
+      $("#sil").click(function(){
+        $("#form").css({
+          "display":"none"
+        })
+        $(".btnSil").css({
+          "display":"inherit"
+        })
+        $(".btnSat").css({
+          "display":"none"
+        })
+      })
+
+    });
+  </script>
+</body>
+
+</html>
